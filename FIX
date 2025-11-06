@@ -1,0 +1,2495 @@
+1.saya mau semua materi , klo ga salah total ada 300 file lebih , saya minta , jadi kamu bagi beberapa batch , klo sekaligus saya ga mau , karna nanti klo ada revisi susah , jadi kamu bagi beberapa batch 2.tampilan desain dan fitur samain kaya ini <?php /**
+
+========================================
+SITUNEO DIGITAL - Premium Homepage
+Website Termahal & Termewah Se-Indonesia
+NIB: 20250-9261-4570-4515-5453
+======================================== */
+session_start(); date_default_timezone_set('Asia/Jakarta');
+
+$lang = $_GET['lang'] ?? $_SESSION['lang'] ?? 'id'; $_SESSION['lang'] = $lang;
+
+// Multi-language content (SIMPLE LANGUAGE) $text = [ 'id' => [ 'hero_title' => 'Bikin Website Profesional Cuma Rp 350rb/Halaman', 'hero_tagline' => 'Menyelaraskan Ide Menjadi Solusi Digital Modern', 'hero_subtitle' => 'FREE DEMO 24 JAM - Lihat Dulu Hasilnya, Bayar Kalau Cocok!', 'hero_desc' => 'Partner digital terpercaya sejak 2020. Sudah bantu 500+ bisnis sukses online!', 'nav_home' => 'Beranda', 'nav_about' => 'Tentang Kami', 'nav_services' => 'Layanan', 'nav_portfolio' => 'Lihat Demo', 'nav_pricing' => 'Harga Paket', 'nav_contact' => 'Hubungi', 'nav_calculator' => 'Hitung Harga', 'nav_login' => 'Masuk', 'btn_demo' => 'COBA DEMO GRATIS', 'btn_calculator' => 'HITUNG BERAPA BIAYANYA', 'btn_whatsapp' => 'CHAT WHATSAPP SEKARANG', 'btn_view_all' => 'LIHAT SEMUA', 'section_about' => 'Kenapa Harus Pilih Kami?', 'section_services' => 'Layanan Kami (26 Macam!)', 'section_packages' => 'Paket Hemat Bundling', 'section_portfolio' => 'Contoh Website Yang Udah Jadi', 'section_testimonial' => 'Kata Customer Kami', 'section_faq' => 'Pertanyaan Yang Sering Ditanya', 'section_contact' => 'Cara Pesan', ], 'en' => [ 'hero_title' => 'Professional Website Only Rp 350k/Page', 'hero_tagline' => 'Digital Harmony for a Modern World', 'hero_subtitle' => 'FREE 24H DEMO - See First, Pay If You Like!', 'hero_desc' => 'Trusted digital partner since 2020. Helped 500+ businesses succeed online!', 'nav_home' => 'Home', 'nav_about' => 'About', 'nav_services' => 'Services', 'nav_portfolio' => 'Demo', 'nav_pricing' => 'Pricing', 'nav_contact' => 'Contact', 'nav_calculator' => 'Calculator', 'nav_login' => 'Login', 'btn_demo' => 'TRY FREE DEMO', 'btn_calculator' => 'CALCULATE PRICE', 'btn_whatsapp' => 'CHAT WHATSAPP NOW', 'btn_view_all' => 'VIEW ALL', 'section_about' => 'Why Choose Us?', 'section_services' => 'Our Services (26 Types!)', 'section_packages' => 'Bundle Packages', 'section_portfolio' => 'Demo Websites', 'section_testimonial' => 'What Clients Say', 'section_faq' => 'FAQ', 'section_contact' => 'How to Order', ] ]; $t = $text[$lang];
+
+// 8 LAYANAN PALING POPULER (dari 26 layanan) $services = [ [ 'id' => 1, 'name' => 'Bikin Website', 'icon' => 'globe', 'price_start' => 350000, 'description' => 'Website profesional yang bisa dibuka di HP, tablet, komputer. Cepat loading dan mudah dicari di Google!', 'image' => 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=400&h=300&fit=crop&q=80' ], [ 'id' => 2, 'name' => 'Toko Online Lengkap', 'icon' => 'cart', 'price_start' => 2000000, 'description' => 'Jualan online kayak Tokopedia! Ada keranjang belanja, sistem pembayaran otomatis, dan lacak pengiriman.', 'image' => 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop&q=80' ], [ 'id' => 7, 'name' => 'SEO Biar Muncul di Google', 'icon' => 'search', 'price_start' => 1000000, 'description' => 'Biar website kamu gampang ditemukan di Google. Traffic naik, pembeli makin banyak!', 'image' => 'https://images.unsplash.com/photo-1571721795195-a2ca2d3370a9?w=400&h=300&fit=crop&q=80' ], [ 'id' => 11, 'name' => 'Iklan Google Ads', 'icon' => 'bullseye', 'price_start' => 350000, 'description' => 'Pasang iklan di Google biar langsung muncul paling atas. Customer datang terus!', 'image' => 'https://images.unsplash.com/photo-1611926653458-09294b3142bf?w=400&h=300&fit=crop&q=80' ], [ 'id' => 12, 'name' => 'Iklan Facebook & Instagram', 'icon' => 'facebook', 'price_start' => 250000, 'description' => 'Iklan di FB & IG biar produk kamu dilihat jutaan orang. Target customer yang tepat!', 'image' => 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400&h=300&fit=crop&q=80' ], [ 'id' => 15, 'name' => 'Robot Chat Pintar (AI)', 'icon' => 'robot', 'price_start' => 200000, 'description' => 'Robot yang bales chat otomatis 24 jam nonstop di WhatsApp. Customer puas, kamu santai!', 'image' => 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=400&h=300&fit=crop&q=80' ], [ 'id' => 27, 'name' => 'Dashboard Pantau Bisnis', 'icon' => 'speedometer2', 'price_start' => 1500000, 'description' => 'Dashboard canggih buat pantau penjualan, stok barang, customer. Kayak aplikasi modern!', 'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop&q=80' ], [ 'id' => 28, 'name' => 'Payment Gateway (Bayar Online)', 'icon' => 'credit-card', 'price_start' => 500000, 'description' => 'Customer bisa bayar pakai transfer bank, OVO, GoPay, QRIS. Otomatis masuk ke rekening!', 'image' => 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=300&fit=crop&q=80' ], ];
+
+// 3 PAKET BUNDLING PALING LAKU $packages = [ [ 'id' => 1, 'name' => 'STARTER', 'tagline' => 'Buat UMKM & Bisnis Kecil', 'price_original' => 3500000, 'price_promo' => 2500000, 'popular' => 0, 'features' => [ 'Website 5 halaman', 'Domain .com gratis 1 tahun', 'Hosting 1 tahun', 'SSL (website aman - ada gemboknya)', 'Desain logo GRATIS', '5 artikel SEO biar muncul di Google', 'Dibantu 1 bulan kalau ada masalah', 'Bisa dibuka di HP', 'SEO dasar' ] ], [ 'id' => 2, 'name' => 'BUSINESS', 'tagline' => 'Yang Paling Banyak Dipilih!', 'price_original' => 6000000, 'price_promo' => 4000000, 'popular' => 1, 'features' => [ 'Website 8 halaman', 'SEO canggih biar top di Google', 'Siap jadi toko online', 'Payment gateway (terima bayar online)', 'Domain .com gratis 2 tahun', 'Hosting 2 tahun', 'Logo + brosur GRATIS', '10 artikel SEO', 'Dibantu 3 bulan', 'Dashboard admin buat kelola website', 'Live chat langsung di website' ] ], [ 'id' => 3, 'name' => 'PREMIUM', 'tagline' => 'Fitur Lengkap Kayak Perusahaan Besar', 'price_original' => 10000000, 'price_promo' => 6500000, 'popular' => 0, 'features' => [ 'Website 10 halaman', 'SEO full - dijamin nongol di Google', 'Bisa 2 bahasa (Indonesia & Inggris)', 'Dashboard admin super canggih', 'Domain .com gratis 3 tahun', 'Hosting 3 tahun', 'Semua design GRATIS (logo, brosur, banner)', '20 artikel SEO', 'Dibantu 6 bulan', 'Setup iklan Google Ads', 'WhatsApp Business API', 'Email marketing otomatis' ] ] ];
+
+// 12 PORTFOLIO DEMO (dari 50 portfolio) $portfolios = [ ['id' => 1, 'title' => 'Toko Baju Online', 'category' => 'Toko Online', 'description' => 'Website toko fashion lengkap dengan keranjang belanja & pembayaran otomatis', 'image' => 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop&q=80'], ['id' => 36, 'title' => 'Service AC Panggilan', 'category' => 'Jasa Service', 'description' => 'Website service AC dengan booking online & emergency call 24 jam', 'image' => 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&h=400&fit=crop&q=80'], ['id' => 10, 'title' => 'Konsultan Bisnis', 'category' => 'Jasa Profesional', 'description' => 'Website konsultan dengan sistem booking konsultasi online', 'image' => 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop&q=80'], ['id' => 15, 'title' => 'Klinik Dokter', 'category' => 'Kesehatan', 'description' => 'Website klinik dengan booking dokter online & jadwal praktek', 'image' => 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&h=400&fit=crop&q=80'], ['id' => 19, 'title' => 'Kursus Online', 'category' => 'Pendidikan', 'description' => 'Platform kursus dengan video, quiz, dan sertifikat digital', 'image' => 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&h=400&fit=crop&q=80'], ['id' => 7, 'title' => 'Restoran & Cafe', 'category' => 'Makanan', 'description' => 'Website restoran dengan menu digital & booking meja', 'image' => 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop&q=80'], ['id' => 32, 'title' => 'Laundry Kiloan', 'category' => 'Jasa Service', 'description' => 'Website laundry dengan order online & pick up gratis', 'image' => 'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=600&h=400&fit=crop&q=80'], ['id' => 22, 'title' => 'Jual Beli Rumah', 'category' => 'Properti', 'description' => 'Portal properti dengan virtual tour 360Â° & kalkulator KPR', 'image' => 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=400&fit=crop&q=80'], ['id' => 45, 'title' => 'Cuci Mobil Premium', 'category' => 'Otomotif', 'description' => 'Website car wash dengan booking slot waktu & membership', 'image' => 'https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?w=600&h=400&fit=crop&q=80'], ['id' => 47, 'title' => 'Service Laptop & HP', 'category' => 'Service Teknis', 'description' => 'Website service gadget dengan home service & garansi', 'image' => 'https://images.unsplash.com/photo-1556656793-08538906a9f8?w=600&h=400&fit=crop&q=80'], ['id' => 24, 'title' => 'Hotel & Booking', 'category' => 'Hotel', 'description' => 'Website hotel dengan booking kamar online & cek ketersediaan', 'image' => 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop&q=80'], ['id' => 2, 'title' => 'Company Profile IT', 'category' => 'Perusahaan', 'description' => 'Website perusahaan dengan portfolio project & contact form', 'image' => 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop&q=80'], ];
+
+// 4 TESTIMONI CUSTOMER $testimonials = [ ['full_name' => 'Budi Santoso', 'order_number' => 'ORD-2024-001', 'rating' => 5, 'review' => 'Harga Rp 350rb/halaman ini MURAH BANGET! Website toko online saya jadi keren, penjualan naik 3x lipat. Tim nya fast response banget!'], ['full_name' => 'Sarah Wijaya', 'order_number' => 'ORD-2024-078', 'rating' => 5, 'review' => 'FREE DEMO 24 jam ini jujur membantu banget. Saya bisa liat dulu hasilnya sebelum bayar. Hasilnya? PUAS BANGET! Sekarang jualan online makin lancar.'], ['full_name' => 'Dr. Ahmad Fauzi', 'order_number' => 'ORD-2024-125', 'rating' => 5, 'review' => 'Website klinik saya sekarang ada booking online. Pasien tinggal klik aja, gak usah telpon lagi. Praktis dan modern!'], ['full_name' => 'Rina Kusuma', 'order_number' => 'ORD-2024-203', 'rating' => 5, 'review' => 'Menu digital restoran saya dibikinin Situneo. Customer bilang keren! Order lewat website juga nambah banyak. Makasih Situneo!'] ]; ?>
+
+<!DOCTYPE html> <html lang="<?= $lang ?>"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>SITUNEO DIGITAL - Website Rp 350rb/Halaman | FREE DEMO 24 JAM | NIB Resmi</title> <meta name="description" content="Bikin website cuma Rp 350rb/halaman! FREE DEMO 24 JAM - Lihat dulu hasilnya, bayar kalau cocok. NIB Resmi. 500+ customer puas!"> <meta name="keywords" content="jasa website murah, bikin website 350rb, website jakarta, toko online murah, website profesional, situneo digital">
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="https://situneo.my.id/logo">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+<!-- CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+
+<style>
+    :root {
+        --primary-blue: #1E5C99;
+        --dark-blue: #0F3057;
+        --gold: #FFB400;
+        --bright-gold: #FFD700;
+        --white: #ffffff;
+        --text-light: #e9ecef;
+        --gradient-primary: linear-gradient(135deg, #1E5C99 0%, #0F3057 100%);
+        --gradient-gold: linear-gradient(135deg, #FFD700 0%, #FFB400 100%);
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Inter', sans-serif;
+        background: var(--dark-blue);
+        color: var(--white);
+        overflow-x: hidden;
+    }
+
+    /* Form Styling */
+    .form-control, .form-select, textarea.form-control {
+        background: rgba(255,255,255,0.05) !important;
+        border: 2px solid rgba(255,180,0,0.3) !important;
+        color: white !important;
+        padding: 15px !important;
+        border-radius: 15px !important;
+    }
+
+    .form-control:focus, .form-select:focus, textarea.form-control:focus {
+        background: rgba(255,255,255,0.1) !important;
+        border-color: var(--gold) !important;
+        color: white !important;
+        box-shadow: 0 0 0 0.25rem rgba(255, 180, 0, 0.25) !important;
+    }
+
+    .form-control::placeholder {
+        color: rgba(255, 255, 255, 0.5) !important;
+    }
+
+    select option {
+        background: var(--dark-blue) !important;
+        color: white !important;
+        padding: 10px !important;
+    }
+    
+    /* Loading Screen */
+    .loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--gradient-primary);
+        z-index: 10000;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: opacity 0.5s ease;
+    }
+    
+    .loading-screen.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+    
+    .loader-logo {
+        width: 120px;
+        height: 120px;
+        position: relative;
+        margin-bottom: 30px;
+        animation: pulse-glow 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulse-glow {
+        0%, 100% { 
+            transform: scale(1); 
+            filter: drop-shadow(0 0 20px rgba(255, 180, 0, 0.5));
+        }
+        50% { 
+            transform: scale(1.1); 
+            filter: drop-shadow(0 0 40px rgba(255, 180, 0, 0.8));
+        }
+    }
+    
+    .loader-logo::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        border: 3px solid var(--gold);
+        border-radius: 20px;
+        opacity: 0.3;
+        animation: rotate-border 3s linear infinite;
+    }
+    
+    @keyframes rotate-border {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    
+    .loader-logo img {
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+        object-fit: contain;
+    }
+    
+    /* Network Background */
+    .network-bg {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -2;
+        overflow: hidden;
+        opacity: 0.3;
+    }
+    
+    .network-bg canvas {
+        width: 100%;
+        height: 100%;
+    }
+    
+    /* Circuit Pattern */
+    .circuit-pattern {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        opacity: 0.05;
+        background-image: 
+            linear-gradient(90deg, var(--gold) 1px, transparent 1px),
+            linear-gradient(180deg, var(--gold) 1px, transparent 1px);
+        background-size: 50px 50px;
+        animation: circuit-move 60s linear infinite;
+    }
+    
+    @keyframes circuit-move {
+        0% { transform: translate(0, 0); }
+        100% { transform: translate(50px, 50px); }
+    }
+    
+    /* Navbar */
+    .navbar-premium {
+        background: rgba(15, 48, 87, 0.95);
+        backdrop-filter: blur(20px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        padding: 1rem 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 998;
+        border-bottom: 1px solid rgba(255, 180, 0, 0.2);
+        transition: all 0.3s ease;
+    }
+    
+    .navbar-premium.scrolled {
+        padding: 0.5rem 0;
+        background: rgba(15, 48, 87, 0.98);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+    
+    .nav-link {
+        color: var(--white) !important;
+        font-weight: 500;
+        margin: 0 10px;
+        transition: all 0.3s;
+        position: relative;
+    }
+    
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: var(--gold);
+        transition: all 0.3s;
+        transform: translateX(-50%);
+    }
+    
+    .nav-link:hover::after {
+        width: 100%;
+    }
+    
+    .nav-link:hover {
+        color: var(--gold) !important;
+        transform: translateY(-2px);
+    }
+
+    /* Language Switcher */
+    .lang-switcher {
+        display: flex;
+        gap: 5px;
+    }
+
+    .lang-btn {
+        padding: 5px 12px;
+        border-radius: 20px;
+        background: rgba(255,180,0,0.1);
+        border: 1px solid rgba(255,180,0,0.3);
+        color: var(--text-light);
+        text-decoration: none;
+        font-size: 0.85rem;
+        transition: all 0.3s;
+    }
+
+    .lang-btn:hover, .lang-btn.active {
+        background: var(--gradient-gold);
+        color: var(--dark-blue);
+        border-color: var(--gold);
+        font-weight: 700;
+    }
+
+    /* Buttons */
+    .btn-gold {
+        background: var(--gradient-gold);
+        color: var(--dark-blue);
+        border: none;
+        padding: 15px 40px;
+        font-weight: 700;
+        border-radius: 50px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s;
+        text-decoration: none;
+        display: inline-block;
+        box-shadow: 0 8px 20px rgba(255, 180, 0, 0.3);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .btn-gold::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        transition: left 0.5s;
+    }
+    
+    .btn-gold:hover::before {
+        left: 100%;
+    }
+    
+    .btn-gold:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 35px rgba(255, 180, 0, 0.6);
+        color: var(--dark-blue);
+    }
+
+    /* Cards */
+    .card-premium {
+        background: linear-gradient(135deg, rgba(30, 92, 153, 0.1) 0%, rgba(15, 48, 87, 0.2) 100%);
+        border: 1px solid rgba(255, 180, 0, 0.2);
+        border-radius: 20px;
+        padding: 2rem;
+        height: 100%;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+    }
+    
+    .card-premium:hover {
+        transform: translateY(-15px) scale(1.02);
+        box-shadow: 0 25px 50px rgba(255, 180, 0, 0.3);
+        border-color: var(--gold);
+    }
+
+    /* Section Title */
+    .section-title {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 800;
+        text-align: center;
+        margin-bottom: 1rem;
+        background: var(--gradient-gold);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        position: relative;
+        display: inline-block;
+        width: 100%;
+    }
+
+    /* Order Notification (LEFT BOTTOM) */
+    .order-notification {
+        position: fixed;
+        bottom: 100px;
+        left: 30px;
+        z-index: 997;
+        background: linear-gradient(135deg, rgba(30,92,153,0.95) 0%, rgba(15,48,87,0.95) 100%);
+        border: 2px solid var(--gold);
+        border-radius: 15px;
+        padding: 15px 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        max-width: 350px;
+        animation: slideInLeft 0.5s ease-out;
+        display: none;
+        backdrop-filter: blur(10px);
+    }
+
+    @keyframes slideInLeft {
+        from { transform: translateX(-100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+
+    .order-notification.show {
+        display: block;
+    }
+
+    .order-notification.hide {
+        animation: slideOutLeft 0.5s ease-out;
+    }
+
+    @keyframes slideOutLeft {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(-100%); opacity: 0; }
+    }
+
+    /* Floating WhatsApp */
+    .floating-wa {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 999;
+        background: #25D366;
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        box-shadow: 0 8px 20px rgba(37,211,102,0.4);
+        animation: pulse-wa 2s infinite;
+        text-decoration: none;
+    }
+
+    @keyframes pulse-wa {
+        0%, 100% { 
+            transform: scale(1); 
+            box-shadow: 0 8px 20px rgba(37,211,102,0.4);
+        }
+        50% { 
+            transform: scale(1.1); 
+            box-shadow: 0 12px 30px rgba(37,211,102,0.6);
+        }
+    }
+
+    @keyframes pulse {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(255, 180, 0, 0.7); }
+        50% { box-shadow: 0 0 0 20px rgba(255, 180, 0, 0); }
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+    }
+    
+    @keyframes float-badge {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+
+    /* Back to Top */
+    #backToTop {
+        position: fixed;
+        bottom: 100px;
+        right: 30px;
+        z-index: 998;
+        background: var(--gradient-gold);
+        color: var(--dark-blue);
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: none;
+        box-shadow: 0 5px 15px rgba(255,180,0,0.4);
+        transition: all 0.3s;
+        cursor: pointer;
+    }
+
+    #backToTop:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(255,180,0,0.6);
+    }
+
+    /* Pricing Card */
+    .pricing-card {
+        position: relative;
+        min-height: 600px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .pricing-card ul {
+        flex-grow: 1;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Portfolio Card */
+    .portfolio-card {
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        transition: all 0.4s;
+        cursor: pointer;
+    }
+
+    .portfolio-card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        transition: transform 0.5s;
+    }
+
+    .portfolio-card:hover img {
+        transform: scale(1.1);
+    }
+    
+    .portfolio-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(180deg, transparent 0%, rgba(15,48,87,0.95) 70%);
+        opacity: 0;
+        transition: opacity 0.4s;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 1.5rem;
+    }
+
+    .portfolio-card:hover .portfolio-overlay {
+        opacity: 1;
+    }
+
+    /* Service Card with Image */
+    .service-card {
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+        height: 100%;
+        transition: all 0.4s;
+    }
+
+    .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(255,180,0,0.3);
+    }
+
+    .service-image {
+        position: relative;
+        height: 180px;
+        overflow: hidden;
+    }
+
+    .service-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s;
+    }
+
+    .service-card:hover .service-image img {
+        transform: scale(1.1);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .hero-title {
+            font-size: 2rem !important;
+        }
+        .order-notification {
+            left: 15px;
+            max-width: 280px;
+        }
+        .floating-wa {
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+        }
+    }
+</style>
+</head> <body> <!-- Loading Screen --> <div class="loading-screen" id="loadingScreen"> <div class="loader-logo"> <img src="https://situneo.my.id/logo" alt="Situneo Logo"> </div> <div class="loader-text text-center"> <h3 style="color: var(--gold); font-family: 'Plus Jakarta Sans', sans-serif;">SITUNEO DIGITAL</h3> <p style="color: var(--text-light);">Menyelaraskan Ide Menjadi Solusi Digital Modern</p> <div class="mt-3"> <div class="spinner-border text-warning" role="status"> <span class="visually-hidden">Loading...</span> </div> </div> </div> </div>
+<!-- Network Background -->
+<div class="network-bg" id="networkBg"></div>
+
+<!-- Circuit Pattern -->
+<div class="circuit-pattern"></div>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-premium">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="index.php" style="text-decoration: none;">
+            <img src="https://situneo.my.id/logo" 
+                 alt="Situneo" width="50" height="50" 
+                 style="margin-right: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(255,180,0,0.4);">
+            <div>
+                <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--gold);">SITUNEO</span>
+                <small style="display: block; font-size: 0.7rem; color: var(--text-light); margin-top: -5px;">Digital Harmony</small>
+            </div>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                style="border-color: var(--gold);">
+            <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item"><a class="nav-link active" href="#home"><?= $t['nav_home'] ?></a></li>
+                <li class="nav-item"><a class="nav-link" href="about.php"><?= $t['nav_about'] ?></a></li>
+                <li class="nav-item"><a class="nav-link" href="services.php"><?= $t['nav_services'] ?></a></li>
+                <li class="nav-item"><a class="nav-link" href="portfolio.php"><?= $t['nav_portfolio'] ?></a></li>
+                <li class="nav-item"><a class="nav-link" href="pricing.php"><?= $t['nav_pricing'] ?></a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.php"><?= $t['nav_contact'] ?></a></li>
+                <li class="nav-item"><a class="nav-link" href="calculator.php"><?= $t['nav_calculator'] ?></a></li>
+                <li class="nav-item ms-3">
+                    <a href="auth/login.php" class="btn btn-outline-warning btn-sm" style="border-radius: 50px; padding: 8px 20px;">
+                        <i class="bi bi-box-arrow-in-right"></i> <?= $t['nav_login'] ?>
+                    </a>
+                </li>
+                <li class="nav-item ms-2">
+                    <div class="lang-switcher">
+                        <a href="?lang=id" class="lang-btn <?= $lang == 'id' ? 'active' : '' ?>">ðŸ‡®ðŸ‡© ID</a>
+                        <a href="?lang=en" class="lang-btn <?= $lang == 'en' ? 'active' : '' ?>">ðŸ‡ºðŸ‡¸ EN</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="home" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 150px 20px 80px; position: relative; background: radial-gradient(ellipse at top, rgba(255, 180, 0, 0.1) 0%, transparent 50%);">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7" data-aos="fade-right" data-aos-duration="1000">
+                <!-- NIB Badge -->
+                <div class="mb-4" style="display: inline-block; background: linear-gradient(135deg, #FF0000 0%, #FF6B00 100%); border: 2px solid #FFD700; padding: 12px 25px; border-radius: 50px; animation: pulse 2s infinite; box-shadow: 0 10px 30px rgba(255,0,0,0.5);">
+                    <i class="bi bi-shield-check-fill" style="color: #FFD700; font-size: 1.3rem;"></i>
+                    <span style="color: white; font-weight: 800; margin-left: 8px; font-size: 1.1rem;">NIB RESMI: 20250-9261-4570-4515-5453</span>
+                </div>
+                
+                <h1 class="hero-title" style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900; background: var(--gradient-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem; line-height: 1.1;">
+                    <?= $t['hero_title'] ?>
+                </h1>
+                
+                <p style="font-size: 1.3rem; color: var(--text-light); font-weight: 600; margin-bottom: 1rem; font-style: italic;">
+                    <?= $t['hero_tagline'] ?>
+                </p>
+                
+                <p style="font-size: 1.6rem; color: var(--gold); font-weight: 700; margin-bottom: 1rem;">
+                    <?= $t['hero_subtitle'] ?>
+                </p>
+                
+                <p style="font-size: 1.2rem; color: var(--text-light); line-height: 1.8; margin-bottom: 2rem;">
+                    <?= $t['hero_desc'] ?><br>
+                    <strong style="color: var(--gold);">âœ“ 500+ Customer Puas</strong> â€¢ 
+                    <strong style="color: var(--gold);">âœ“ Rating 4.9/5.0</strong> â€¢ 
+                    <strong style="color: var(--gold);">âœ“ Support 24/7</strong>
+                </p>
+                
+                <!-- Price Highlight Box -->
+                <div class="card-premium mb-4" style="background: linear-gradient(135deg, rgba(255,0,0,0.2) 0%, rgba(255,107,0,0.2) 100%); border: 2px solid var(--gold); padding: 2rem;">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 mb-3 mb-md-0">
+                            <h3 style="color: var(--gold); font-weight: 900; margin: 0; font-size: 2.5rem;">Rp 350.000</h3>
+                            <p style="color: var(--text-light); margin: 0;">Per Halaman Website</p>
+                        </div>
+                        <div class="col-md-6">
+                            <ul style="list-style: none; padding: 0; margin: 0; color: var(--text-light);">
+                                <li><i class="bi bi-check-circle-fill" style="color: var(--gold);"></i> Bisa dibuka di HP</li>
+                                <li><i class="bi bi-check-circle-fill" style="color: var(--gold);"></i> Cepat loading</li>
+                                <li><i class="bi bi-check-circle-fill" style="color: var(--gold);"></i> Konsultasi GRATIS</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CTA Buttons -->
+                <div class="d-flex flex-wrap gap-3 mb-4">
+                    <a href="auth/register.php" class="btn-gold" style="font-size: 1.1rem;">
+                        <i class="bi bi-rocket-takeoff"></i> <?= $t['btn_demo'] ?>
+                    </a>
+                    <a href="calculator.php" class="btn btn-outline-warning btn-lg" style="border-radius: 50px; padding: 15px 40px; font-weight: 700; border-width: 2px;">
+                        <i class="bi bi-calculator"></i> <?= $t['btn_calculator'] ?>
+                    </a>
+                    <a href="https://wa.me/6283173868915?text=Halo%20Situneo,%20saya%20mau%20bikin%20website%20dong" 
+                       class="btn btn-success btn-lg" 
+                       style="border-radius: 50px; padding: 15px 40px; font-weight: 700; animation: pulse 2s infinite;" 
+                       target="_blank">
+                        <i class="bi bi-whatsapp"></i> <?= $t['btn_whatsapp'] ?>
+                    </a>
+                </div>
+                
+                <!-- Trust Badges -->
+                <div class="d-flex flex-wrap gap-2">
+                    <div style="background: rgba(255,180,0,0.1); border: 1px solid var(--gold); padding: 8px 15px; border-radius: 30px;">
+                        <i class="bi bi-clock-history" style="color: var(--gold);"></i>
+                        <small style="color: var(--gold); font-weight: 600; margin-left: 5px;">Sejak 2020</small>
+                    </div>
+                    <div style="background: rgba(255,180,0,0.1); border: 1px solid var(--gold); padding: 8px 15px; border-radius: 30px;">
+                        <i class="bi bi-people-fill" style="color: var(--gold);"></i>
+                        <small style="color: var(--gold); font-weight: 600; margin-left: 5px;">500+ Customer</small>
+                    </div>
+                    <div style="background: rgba(255,180,0,0.1); border: 1px solid var(--gold); padding: 8px 15px; border-radius: 30px;">
+                        <i class="bi bi-star-fill" style="color: var(--gold);"></i>
+                        <small style="color: var(--gold); font-weight: 600; margin-left: 5px;">Rating 4.9/5.0</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-5" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                <div style="position: relative;">
+                    <div style="background: linear-gradient(135deg, rgba(30,92,153,0.3) 0%, rgba(15,48,87,0.5) 100%); 
+                                border-radius: 30px; padding: 2rem; border: 2px solid rgba(255,180,0,0.3);
+                                box-shadow: 0 20px 60px rgba(255,180,0,0.2); animation: float 6s ease-in-out infinite;">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=600&fit=crop&q=80" 
+                             alt="Digital Solutions" 
+                             style="width: 100%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                        
+                        <!-- Floating Price Tag -->
+                        <div style="position: absolute; top: 20px; right: 20px; background: rgba(255,0,0,0.95); 
+                                    padding: 15px 25px; border-radius: 15px; animation: float-badge 3s ease-in-out infinite; box-shadow: 0 8px 20px rgba(255,0,0,0.5);">
+                            <h4 style="margin: 0; color: white; font-weight: 900;">Rp 350rb</h4>
+                            <small style="color: #FFD700; font-weight: 700;">/Halaman</small>
+                        </div>
+                        
+                        <!-- Floating 24H Badge -->
+                        <div style="position: absolute; bottom: 20px; left: 20px; background: rgba(30,92,153,0.95); 
+                                    padding: 15px 25px; border-radius: 15px; animation: float-badge 4s ease-in-out infinite;">
+                            <h4 style="margin: 0; color: var(--gold); font-weight: 800;">24 Jam</h4>
+                            <small style="color: var(--white);">DEMO Gratis</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Counter Section -->
+<section id="about" class="py-5" style="background: linear-gradient(180deg, transparent 0%, rgba(30,92,153,0.1) 100%);">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="section-title"><?= $t['section_about'] ?></h2>
+            <p class="lead" style="color: var(--text-light); max-width: 800px; margin: 0 auto; font-size: 1.2rem;">
+                Partner digital terpercaya sejak 2020 dengan harga paling terjangkau!
+            </p>
+        </div>
+        
+        <!-- Stats Counter -->
+        <div class="row g-4 mb-5">
+            <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="100">
+                <div class="card-premium text-center p-4">
+                    <h2 class="mb-0" style="color: var(--gold); font-weight: 900; font-size: 3rem;">
+                        <span class="counter" data-target="500">0</span>+
+                    </h2>
+                    <p style="color: var(--text-light); margin: 0;">Customer Puas</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="200">
+                <div class="card-premium text-center p-4">
+                    <h2 class="mb-0" style="color: var(--gold); font-weight: 900; font-size: 3rem;">
+                        <span class="counter" data-target="800">0</span>+
+                    </h2>
+                    <p style="color: var(--text-light); margin: 0;">Website Jadi</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="300">
+                <div class="card-premium text-center p-4">
+                    <h2 class="mb-0" style="color: var(--gold); font-weight: 900; font-size: 3rem;">
+                        <span class="counter" data-target="98">0</span>%
+                    </h2>
+                    <p style="color: var(--text-light); margin: 0;">Tingkat Kepuasan</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="400">
+                <div class="card-premium text-center p-4">
+                    <h2 class="mb-0" style="color: var(--gold); font-weight: 900; font-size: 3rem;">24/7</h2>
+                    <p style="color: var(--text-light); margin: 0;">Siap Bantu</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 4 Main Benefits -->
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-premium text-center h-100">
+                    <div class="mb-3" style="width: 80px; height: 80px; background: var(--gradient-gold); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                        <i class="bi bi-cash-coin" style="font-size: 2.5rem; color: var(--dark-blue);"></i>
+                    </div>
+                    <h4 style="color: var(--gold); font-weight: 700; margin-bottom: 1rem;">Harga Murah Banget!</h4>
+                    <p style="color: var(--text-light); line-height: 1.6;">
+                        Cuma <strong style="color: var(--gold);">Rp 350rb/halaman</strong> udah dapet website profesional! Paling murah se-Indonesia!
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-premium text-center h-100">
+                    <div class="mb-3" style="width: 80px; height: 80px; background: var(--gradient-gold); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                        <i class="bi bi-gift" style="font-size: 2.5rem; color: var(--dark-blue);"></i>
+                    </div>
+                    <h4 style="color: var(--gold); font-weight: 700; margin-bottom: 1rem;">DEMO Gratis 24 Jam</h4>
+                    <p style="color: var(--text-light); line-height: 1.6;">
+                        Lihat dulu hasilnya dalam 24 jam, bayar kalau cocok aja. <strong style="color: var(--gold);">Gak ada resiko!</strong>
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="card-premium text-center h-100">
+                    <div class="mb-3" style="width: 80px; height: 80px; background: var(--gradient-gold); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                        <i class="bi bi-shield-check" style="font-size: 2.5rem; color: var(--dark-blue);"></i>
+                    </div>
+                    <h4 style="color: var(--gold); font-weight: 700; margin-bottom: 1rem;">Resmi & Terpercaya</h4>
+                    <p style="color: var(--text-light); line-height: 1.6;">
+                        Punya <strong style="color: var(--gold);">NIB resmi</strong> dari pemerintah. Bisnis legal, aman, dan terpercaya!
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                <div class="card-premium text-center h-100">
+                    <div class="mb-3" style="width: 80px; height: 80px; background: var(--gradient-gold); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                        <i class="bi bi-headset" style="font-size: 2.5rem; color: var(--dark-blue);"></i>
+                    </div>
+                    <h4 style="color: var(--gold); font-weight: 700; margin-bottom: 1rem;">Support 24/7</h4>
+                    <p style="color: var(--text-light); line-height: 1.6;">
+                        Tim kami siap bantu <strong style="color: var(--gold);">kapan aja</strong> lewat WhatsApp. Chat langsung fast response!
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-5" data-aos="fade-up">
+            <a href="about.php" class="btn btn-outline-warning btn-lg" style="border-radius: 50px; padding: 15px 40px; font-weight: 700; border-width: 2px;">
+                <i class="bi bi-info-circle"></i> BACA LENGKAP TENTANG KAMI
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section (8 layanan populer) -->
+<section id="services" class="py-5" style="background: radial-gradient(ellipse at center, rgba(255,180,0,0.05) 0%, transparent 70%);">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="section-title"><?= $t['section_services'] ?></h2>
+            <p class="lead" style="color: var(--text-light); max-width: 800px; margin: 0 auto; font-size: 1.2rem;">
+                Layanan digital profesional mulai dari <strong style="color: var(--gold);">Rp 200rb</strong> aja!
+            </p>
+        </div>
+        
+        <div class="row g-4">
+            <?php foreach($services as $index => $service): ?>
+            <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="<?= $index * 50 ?>">
+                <div class="card-premium service-card" style="padding: 0; overflow: hidden;">
+                    <!-- Service Image -->
+                    <div class="service-image">
+                        <img src="<?= htmlspecialchars($service['image']) ?>" 
+                             alt="<?= htmlspecialchars($service['name']) ?>"
+                             loading="lazy">
+                        <div style="position: absolute; top: 15px; right: 15px; width: 50px; height: 50px; background: var(--gradient-gold); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+                            <i class="bi bi-<?= htmlspecialchars($service['icon']) ?>" style="font-size: 1.5rem; color: var(--dark-blue);"></i>
+                        </div>
+                    </div>
+                    
+                    <div style="padding: 1.5rem;">
+                        <h5 style="color: var(--gold); font-weight: 700; margin-bottom: 0.5rem; min-height: 50px;">
+                            <?= htmlspecialchars($service['name']) ?>
+                        </h5>
+                        
+                        <div class="mb-2">
+                            <span style="color: var(--gold); font-weight: 700; font-size: 1.2rem;">
+                                Mulai Rp <?= number_format($service['price_start'], 0, ',', '.') ?>
+                            </span>
+                        </div>
+                        
+                        <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 1rem; min-height: 60px;">
+                            <?= htmlspecialchars($service['description']) ?>
+                        </p>
+                        
+                        <a href="services.php#service-<?= $service['id'] ?>" class="btn btn-sm btn-gold w-100">
+                            <i class="bi bi-info-circle"></i> Lihat Detail
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+        
+        <div class="text-center mt-5" data-aos="fade-up">
+            <a href="services.php" class="btn btn-outline-warning btn-lg" style="border-radius: 50px; padding: 15px 40px; font-weight: 700; border-width: 2px;">
+                <i class="bi bi-grid"></i> <?= $t['btn_view_all'] ?> (26 LAYANAN LENGKAP)
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing/Packages Section (3 paket populer) -->
+<section id="pricing" class="py-5" style="background: linear-gradient(180deg, rgba(30,92,153,0.1) 0%, transparent 100%);">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="section-title"><?= $t['section_packages'] ?></h2>
+            <p class="lead" style="color: var(--text-light); max-width: 800px; margin: 0 auto; font-size: 1.2rem;">
+                Hemat hingga <strong style="color: var(--gold);">Rp 3.5 Juta</strong> dengan paket bundling!
+            </p>
+        </div>
+        
+        <div class="row g-4 justify-content-center">
+            <?php foreach($packages as $index => $pkg): 
+                $is_popular = $pkg['popular'];
+            ?>
+            <div class="col-lg-4 col-md-6" data-aos="flip-left" data-aos-delay="<?= ($index + 1) * 100 ?>">
+                <div class="card-premium pricing-card" style="border: <?= $is_popular ? '3px' : '2px' ?> solid <?= $is_popular ? 'var(--gold)' : 'rgba(255,180,0,0.3)' ?>; <?= $is_popular ? 'transform: scale(1.05); box-shadow: 0 30px 60px rgba(255,180,0,0.4);' : '' ?>">
+                    
+                    <?php if ($is_popular): ?>
+                    <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); 
+                         background: linear-gradient(135deg, #FF0000 0%, #FF6B00 100%); 
+                         color: white; padding: 8px 25px; border-radius: 30px; font-weight: 800; 
+                         box-shadow: 0 5px 15px rgba(255,0,0,0.5); animation: pulse 2s infinite; z-index: 1;">
+                        ðŸ”¥ PALING LAKU!
+                    </div>
+                    <?php endif; ?>
+                    
+                    <div style="<?= $is_popular ? 'margin-top: 1.5rem;' : '' ?>">
+                        <div style="background: var(--gradient-gold); color: var(--dark-blue); 
+                             padding: 8px 20px; border-radius: 30px; display: inline-block; font-weight: 800; margin-bottom: 1rem;">
+                            <?= strtoupper($pkg['name']) ?>
+                        </div>
+                        
+                        <h4 style="color: var(--white); font-weight: 800; font-size: 1.5rem; margin-bottom: 1rem;">
+                            <?= htmlspecialchars($pkg['tagline']) ?>
+                        </h4>
+                        
+                        <div class="mb-4">
+                            <div style="text-decoration: line-through; color: rgba(255,255,255,0.5); font-size: 1rem;">
+                                Rp <?= number_format($pkg['price_original'], 0, ',', '.') ?>
+                            </div>
+                            <div style="color: var(--gold); font-size: 2.5rem; font-weight: 900; line-height: 1; margin: 0.5rem 0;">
+                                Rp <?= number_format($pkg['price_promo'], 0, ',', '.') ?>
+                            </div>
+                            <div style="background: rgba(255,0,0,0.8); color: white; padding: 5px 15px; 
+                                 border-radius: 20px; display: inline-block; font-weight: 700;">
+                                HEMAT Rp <?= number_format(($pkg['price_original'] - $pkg['price_promo'])/1000000, 1) ?>JT
+                            </div>
+                        </div>
+                        
+                        <ul class="list-unstyled" style="text-align: left; margin-bottom: 1.5rem;">
+                            <?php 
+                            $feature_count = 0;
+                            foreach($pkg['features'] as $feature):
+                                if (++$feature_count > 6) break;
+                            ?>
+                            <li class="mb-2" style="color: var(--text-light); font-size: 0.9rem;">
+                                <i class="bi bi-check-circle-fill" style="color: var(--gold);"></i> 
+                                <?= htmlspecialchars($feature) ?>
+                            </li>
+                            <?php endforeach; ?>
+                            <?php if (count($pkg['features']) > 6): ?>
+                            <li class="mb-2" style="color: var(--gold); font-size: 0.9rem;">
+                                <i class="bi bi-plus-circle-fill"></i> 
+                                Dan <?= count($pkg['features']) - 6 ?> fitur lainnya...
+                            </li>
+                            <?php endif; ?>
+                        </ul>
+                        
+                        <div class="mt-auto">
+                            <a href="pricing.php#<?= strtolower($pkg['name']) ?>" 
+                               class="btn btn-outline-warning w-100 mb-2" 
+                               style="border-radius: 50px; padding: 12px; font-weight: 700; border-width: 2px;">
+                                <i class="bi bi-info-circle"></i> LIHAT DETAIL LENGKAP
+                            </a>
+                            <a href="https://wa.me/6283173868915?text=Halo,%20saya%20mau%20pesan%20Paket%20<?= urlencode($pkg['name']) ?>" 
+                               class="btn-gold w-100" target="_blank">
+                                <i class="bi bi-cart-check"></i> PESAN SEKARANG
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+        
+        <div class="text-center mt-5" data-aos="fade-up">
+            <a href="pricing.php" class="btn btn-outline-warning btn-lg" style="border-radius: 50px; padding: 15px 40px; font-weight: 700; border-width: 2px;">
+                <i class="bi bi-tags"></i> LIHAT 6 PAKET LENGKAP
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Portfolio Section (12 demo) -->
+<section id="portfolio" class="py-5" style="background: radial-gradient(ellipse at center, rgba(255,180,0,0.05) 0%, transparent 70%);">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="section-title"><?= $t['section_portfolio'] ?></h2>
+            <p class="lead" style="color: var(--text-light); max-width: 800px; margin: 0 auto; font-size: 1.2rem;">
+                Lihat contoh website yang udah jadi dari berbagai bisnis
+            </p>
+        </div>
+        
+        <div class="row g-4">
+            <?php foreach($portfolios as $index => $port): ?>
+            <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="<?= ($index % 4) * 100 ?>">
+                <div class="portfolio-card">
+                    <img src="<?= htmlspecialchars($port['image']) ?>" 
+                         alt="<?= htmlspecialchars($port['title']) ?>" 
+                         loading="lazy">
+                    
+                    <div class="portfolio-overlay">
+                        <div style="display: inline-block; width: fit-content; 
+                             background: var(--gradient-gold); color: var(--dark-blue); padding: 5px 15px; 
+                             border-radius: 20px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.5rem;">
+                            <?= htmlspecialchars($port['category']) ?>
+                        </div>
+                        <h5 style="color: var(--gold); font-weight: 700; margin-bottom: 0.5rem; font-size: 1rem;">
+                            <?= htmlspecialchars($port['title']) ?>
+                        </h5>
+                        <p style="color: var(--text-light); margin-bottom: 1rem; font-size: 0.85rem;">
+                            <?= htmlspecialchars(substr($port['description'], 0, 60)) ?>...
+                        </p>
+                        <div class="d-flex gap-2">
+                            <a href="portfolio.php#demo-<?= $port['id'] ?>" class="btn btn-sm btn-gold flex-grow-1">
+                                <i class="bi bi-eye"></i> Lihat
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div style="position: absolute; top: 15px; right: 15px; 
+                         background: rgba(255,0,0,0.9); color: white; padding: 6px 12px; 
+                         border-radius: 20px; font-weight: 700; font-size: 0.75rem; animation: pulse 2s infinite;">
+                        <i class="bi bi-play-circle"></i> DEMO
+                    </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+        
+        <div class="text-center mt-5" data-aos="fade-up">
+            <a href="portfolio.php" class="btn btn-outline-warning btn-lg" style="border-radius: 50px; padding: 15px 40px; font-weight: 700; border-width: 2px;">
+                <i class="bi bi-grid-3x3"></i> LIHAT 50+ DEMO LENGKAP
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section id="testimonials" class="py-5" style="background: var(--gradient-primary);">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="section-title" style="color: var(--white);"><?= $t['section_testimonial'] ?></h2>
+            <p class="lead" style="color: var(--text-light); max-width: 800px; margin: 0 auto;">
+                Kata mereka yang udah puas pakai jasa kami
+            </p>
+        </div>
+        
+        <div class="row g-4">
+            <?php foreach($testimonials as $index => $testi): ?>
+            <div class="col-md-6" data-aos="fade-up" data-aos-delay="<?= $index * 100 ?>">
+                <div class="card-premium" style="height: 100%;">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="https://ui-avatars.com/api/?name=<?= urlencode($testi['full_name']) ?>&background=FFB400&color=0F3057&size=60" 
+                             alt="<?= htmlspecialchars($testi['full_name']) ?>" 
+                             style="width: 60px; height: 60px; border-radius: 50%; border: 3px solid var(--gold); margin-right: 15px;">
+                        <div>
+                            <h5 style="color: var(--gold); margin: 0; font-weight: 700;">
+                                <?= htmlspecialchars($testi['full_name']) ?>
+                            </h5>
+                            <small style="color: var(--text-light);">Order #<?= htmlspecialchars($testi['order_number']) ?></small>
+                        </div>
+                    </div>
+                    
+                    <div class="rating mb-3">
+                        <?php for($i = 0; $i < $testi['rating']; $i++): ?>
+                            <i class="bi bi-star-fill" style="color: var(--gold);"></i>
+                        <?php endfor; ?>
+                    </div>
+                    
+                    <p style="color: var(--text-light); line-height: 1.7; font-style: italic;">
+                        "<?= htmlspecialchars($testi['review']) ?>"
+                    </p>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+        
+        <div class="text-center mt-5" data-aos="zoom-in">
+            <p style="color: var(--text-light); font-size: 1.2rem; margin-bottom: 1.5rem;">
+                <i class="bi bi-people-fill" style="color: var(--gold);"></i> 
+                Bergabung dengan <strong style="color: var(--gold);">500+ bisnis</strong> yang udah sukses!
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section id="faq" class="py-5" style="background: linear-gradient(180deg, transparent 0%, rgba(30,92,153,0.1) 100%);">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="section-title"><?= $t['section_faq'] ?></h2>
+            <p class="lead" style="color: var(--text-light); max-width: 800px; margin: 0 auto;">
+                Pertanyaan yang sering ditanya seputar layanan kami
+            </p>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="accordion" id="faqAccordion">
+                    <?php 
+                    $faqs = [
+                        [
+                            'q' => 'Kenapa harga Rp 350rb/halaman bisa semurah itu?',
+                            'a' => 'Karena kami fokus jualan banyak dengan margin kecil. Jadi harga bisa murah tapi kualitas tetap bagus! Plus kami pakai sistem yang efisien jadi biaya produksi lebih hemat.'
+                        ],
+                        [
+                            'q' => 'FREE DEMO 24 JAM itu gimana cara kerjanya?',
+                            'a' => 'Gampang! Kamu order dulu, nanti dalam 24 jam kami kirim demo websitenya. Kamu bisa lihat dulu hasilnya. Kalau cocok, baru bayar. Kalau gak cocok, ya gak usah bayar. Simpel kan?'
+                        ],
+                        [
+                            'q' => 'Berapa lama bikin websitenya?',
+                            'a' => 'Tergantung jenis website. Landing page: 3-5 hari. Website company: 5-7 hari. Toko online: 7-10 hari. Aplikasi custom: 2-4 minggu. Demo bisa kamu lihat dalam 24 jam pertama!'
+                        ],
+                        [
+                            'q' => 'Websitenya bisa dibuka di HP gak?',
+                            'a' => 'Bisa banget! Semua website yang kami bikin sudah responsive. Artinya tampilan website akan menyesuaikan dengan ukuran layar - baik dibuka di HP, tablet, atau komputer. Jadi customer kamu nyaman lihatnya!'
+                        ],
+                        [
+                            'q' => 'Ada garansi gak kalau websitenya error?',
+                            'a' => 'Ada dong! Kami kasih garansi 100%. Kalau ada bug atau error selama masa support, kami perbaiki GRATIS. Bahkan ada garansi uang kembali kalau kamu gak puas sama hasilnya!'
+                        ]
+                    ];
+                    
+                    foreach($faqs as $index => $faq): ?>
+                    <div class="accordion-item mb-3" style="background: rgba(30,92,153,0.1); border: 1px solid rgba(255,180,0,0.2); border-radius: 15px; overflow: hidden;" data-aos="fade-up" data-aos-delay="<?= $index * 50 ?>">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button <?= $index != 0 ? 'collapsed' : '' ?>" 
+                                    type="button" 
+                                    data-bs-toggle="collapse" 
+                                    data-bs-target="#faq<?= $index ?>"
+                                    style="background: transparent; color: var(--gold); font-weight: 700; font-size: 1.1rem; padding: 1.5rem; border: none;">
+                                <i class="bi bi-question-circle-fill me-3" style="font-size: 1.5rem;"></i>
+                                <?= $faq['q'] ?>
+                            </button>
+                        </h3>
+                        <div id="faq<?= $index ?>" 
+                             class="accordion-collapse collapse <?= $index == 0 ? 'show' : '' ?>" 
+                             data-bs-parent="#faqAccordion">
+                            <div class="accordion-body" style="color: var(--text-light); line-height: 1.8; padding: 1.5rem;">
+                                <?= $faq['a'] ?>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+                
+                <div class="text-center mt-5" data-aos="zoom-in">
+                    <a href="https://wa.me/6283173868915?text=Halo, saya mau tanya-tanya tentang jasa website" 
+                       class="btn-gold" target="_blank">
+                        <i class="bi bi-whatsapp"></i> TANYA LEWAT WHATSAPP
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-5" style="background: var(--gradient-primary);">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="section-title" style="color: var(--white);"><?= $t['section_contact'] ?></h2>
+            <p class="lead" style="color: var(--text-light); max-width: 800px; margin: 0 auto;">
+                Siap mulai bikin website? Hubungi kami sekarang buat konsultasi GRATIS!
+            </p>
+        </div>
+        
+        <div class="row g-4 justify-content-center">
+            <!-- Contact Info -->
+            <div class="col-lg-5" data-aos="fade-right">
+                <div class="card-premium h-100">
+                    <h4 style="color: var(--gold); font-weight: 700; margin-bottom: 2rem;">
+                        <i class="bi bi-info-circle"></i> Info Kontak Kami
+                    </h4>
+                    
+                    <div class="contact-item mb-4">
+                        <div class="d-flex align-items-start">
+                            <div style="width: 50px; height: 50px; background: var(--gradient-gold); 
+                                 border-radius: 15px; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                                <i class="bi bi-whatsapp" style="font-size: 1.5rem; color: var(--dark-blue);"></i>
+                            </div>
+                            <div>
+                                <h6 style="color: var(--gold); margin-bottom: 5px;">WhatsApp (Fast Response!)</h6>
+                                <a href="https://wa.me/6283173868915" style="color: var(--text-light); text-decoration: none;" target="_blank">
+                                    +62 831-7386-8915
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item mb-4">
+                        <div class="d-flex align-items-start">
+                            <div style="width: 50px; height: 50px; background: var(--gradient-gold); 
+                                 border-radius: 15px; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                                <i class="bi bi-envelope" style="font-size: 1.5rem; color: var(--dark-blue);"></i>
+                            </div>
+                            <div>
+                                <h6 style="color: var(--gold); margin-bottom: 5px;">Email</h6>
+                                <a href="mailto:support@situneo.my.id" style="color: var(--text-light); text-decoration: none;">
+                                    support@situneo.my.id
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item mb-4">
+                        <div class="d-flex align-items-start">
+                            <div style="width: 50px; height: 50px; background: var(--gradient-gold); 
+                                 border-radius: 15px; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                                <i class="bi bi-geo-alt" style="font-size: 1.5rem; color: var(--dark-blue);"></i>
+                            </div>
+                            <div>
+                                <h6 style="color: var(--gold); margin-bottom: 5px;">Alamat Kantor</h6>
+                                <p style="color: var(--text-light); margin: 0; font-size: 0.9rem;">
+                                    Jl. Bekasi Timur IX Dalam No. 27,<br>
+                                    Rawa Bunga, Jatinegara,<br>
+                                    Jakarta Timur
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item mb-4">
+                        <div class="d-flex align-items-start">
+                            <div style="width: 50px; height: 50px; background: var(--gradient-gold); 
+                                 border-radius: 15px; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                                <i class="bi bi-clock" style="font-size: 1.5rem; color: var(--dark-blue);"></i>
+                            </div>
+                            <div>
+                                <h6 style="color: var(--gold); margin-bottom: 5px;">Jam Kerja</h6>
+                                <p style="color: var(--text-light); margin: 0; font-size: 0.9rem;">
+                                    Senin - Sabtu: 09:00 - 21:00 WIB<br>
+                                    <strong style="color: var(--gold);">Support 24/7 lewat WhatsApp</strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Action -->
+            <div class="col-lg-5" data-aos="fade-left">
+                <div class="card-premium h-100 text-center">
+                    <h4 style="color: var(--gold); font-weight: 700; margin-bottom: 2rem;">
+                        <i class="bi bi-rocket-takeoff"></i> Mulai Bikin Website Sekarang!
+                    </h4>
+                    
+                    <p style="color: var(--text-light); font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem;">
+                        Siap transformasi digital bisnis kamu? <br>
+                        Pilih cara yang paling gampang:
+                    </p>
+                    
+                    <div class="d-grid gap-3">
+                        <a href="auth/register.php" class="btn-gold btn-lg">
+                            <i class="bi bi-person-plus"></i> DAFTAR & PESAN SEKARANG
+                        </a>
+                        
+                        <a href="calculator.php" class="btn btn-outline-warning btn-lg" 
+                           style="border-radius: 50px; padding: 15px; font-weight: 700; border-width: 2px;">
+                            <i class="bi bi-calculator"></i> HITUNG DULU BERAPA BIAYANYA
+                        </a>
+                        
+                        <a href="https://wa.me/6283173868915?text=Halo%20Situneo,%20saya%20mau%20konsultasi%20gratis%20dong" 
+                           class="btn btn-success btn-lg" 
+                           style="border-radius: 50px; padding: 15px; font-weight: 700;" 
+                           target="_blank">
+                            <i class="bi bi-whatsapp"></i> KONSULTASI GRATIS VIA WHATSAPP
+                        </a>
+                        
+                        <a href="portfolio.php" class="btn btn-outline-warning btn-lg" 
+                           style="border-radius: 50px; padding: 15px; font-weight: 700; border-width: 2px;">
+                            <i class="bi bi-eye"></i> LIHAT DEMO WEBSITE DULU
+                        </a>
+                    </div>
+                    
+                    <div class="mt-4 pt-4" style="border-top: 1px solid rgba(255,180,0,0.2);">
+                        <p style="color: var(--text-light); margin-bottom: 0;">
+                            <i class="bi bi-shield-check"></i> 
+                            Terdaftar Resmi dengan NIB<br>
+                            <strong style="color: var(--gold);">20250-9261-4570-4515-5453</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-5" data-aos="fade-up">
+            <a href="contact.php" class="btn btn-outline-warning btn-lg" style="border-radius: 50px; padding: 15px 40px; font-weight: 700; border-width: 2px;">
+                <i class="bi bi-arrow-right-circle"></i> KE HALAMAN KONTAK LENGKAP
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-5" style="background: linear-gradient(135deg, #0F3057 0%, #000000 100%); border-top: 2px solid var(--gold);">
+    <div class="container">
+        <div class="row g-4">
+            <!-- Brand Info -->
+            <div class="col-lg-4">
+                <div class="d-flex align-items-center mb-3">
+                    <img src="https://situneo.my.id/logo" 
+                         alt="Situneo" width="60" height="60" 
+                         style="border-radius: 15px; margin-right: 15px;">
+                    <div>
+                        <h4 style="color: var(--gold); margin: 0; font-weight: 800;">SITUNEO DIGITAL</h4>
+                        <small style="color: var(--text-light);">Digital Harmony</small>
+                    </div>
+                </div>
+                <p style="color: var(--text-light); line-height: 1.8; margin-bottom: 1rem;">
+                    Partner digital terpercaya sejak 2020. Udah bantu 500+ bisnis sukses online dengan harga paling terjangkau!
+                </p>
+                <div class="trust-badges">
+                    <div style="background: rgba(255,180,0,0.1); border: 1px solid var(--gold); 
+                         padding: 10px 20px; border-radius: 10px; display: inline-block; margin-bottom: 1rem;">
+                        <strong style="color: var(--gold);">NIB:</strong>
+                        <span style="color: var(--text-light); font-size: 0.9rem;"> 20250-9261-4570-4515-5453</span>
+                    </div>
+                </div>
+                <div class="social-links mt-3">
+                    <h6 style="color: var(--gold); margin-bottom: 15px;">Follow Kami</h6>
+                    <div class="d-flex gap-2">
+                        <a href="https://facebook.com/situneo" target="_blank" class="social-btn" style="width: 45px; height: 45px; background: rgba(255,180,0,0.15); 
+                           border: 1px solid var(--gold); border-radius: 12px; display: flex; align-items: center; 
+                           justify-content: center; color: var(--gold); text-decoration: none; transition: all 0.3s;">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="https://instagram.com/situneo" target="_blank" class="social-btn" style="width: 45px; height: 45px; background: rgba(255,180,0,0.15); 
+                           border: 1px solid var(--gold); border-radius: 12px; display: flex; align-items: center; 
+                           justify-content: center; color: var(--gold); text-decoration: none; transition: all 0.3s;">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="https://tiktok.com/@situneo" target="_blank" class="social-btn" style="width: 45px; height: 45px; background: rgba(255,180,0,0.15); 
+                           border: 1px solid var(--gold); border-radius: 12px; display: flex; align-items: center; 
+                           justify-content: center; color: var(--gold); text-decoration: none; transition: all 0.3s;">
+                            <i class="bi bi-tiktok"></i>
+                        </a>
+                        <a href="https://youtube.com/@situneo" target="_blank" class="social-btn" style="width: 45px; height: 45px; background: rgba(255,180,0,0.15); 
+                           border: 1px solid var(--gold); border-radius: 12px; display: flex; align-items: center; 
+                           justify-content: center; color: var(--gold); text-decoration: none; transition: all 0.3s;">
+                            <i class="bi bi-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Links -->
+            <div class="col-lg-2 col-md-4">
+                <h5 style="color: var(--gold); font-weight: 700; margin-bottom: 1.5rem;">Menu Cepat</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <a href="index.php" style="color: var(--text-light); text-decoration: none; transition: color 0.3s;">
+                            <i class="bi bi-chevron-right" style="font-size: 0.8rem;"></i> Beranda
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="about.php" style="color: var(--text-light); text-decoration: none; transition: color 0.3s;">
+                            <i class="bi bi-chevron-right" style="font-size: 0.8rem;"></i> Tentang Kami
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="services.php" style="color: var(--text-light); text-decoration: none; transition: color 0.3s;">
+                            <i class="bi bi-chevron-right" style="font-size: 0.8rem;"></i> Layanan
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="portfolio.php" style="color: var(--text-light); text-decoration: none; transition: color 0.3s;">
+                            <i class="bi bi-chevron-right" style="font-size: 0.8rem;"></i> Demo Website
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="pricing.php" style="color: var(--text-light); text-decoration: none; transition: color 0.3s;">
+                            <i class="bi bi-chevron-right" style="font-size: 0.8rem;"></i> Harga Paket
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="contact.php" style="color: var(--text-light); text-decoration: none; transition: color 0.3s;">
+                            <i class="bi bi-chevron-right" style="font-size: 0.8rem;"></i> Hubungi
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="calculator.php" style="color: var(--text-light); text-decoration: none; transition: color 0.3s;">
+                            <i class="bi bi-chevron-right" style="font-size: 0.8rem;"></i> Hitung Harga
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Services -->
+            <div class="col-lg-3 col-md-4">
+                <h5 style="color: var(--gold); font-weight: 700; margin-bottom: 1.5rem;">Layanan Populer</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <a href="services.php#website" style="color: var(--text-light); text-decoration: none; transition: color 0.3s;">
+                            <i class="bi bi-check-circle" style="font-size: 0.9rem;"></i> Bikin Website
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="services.php#seo" style="color: var(--text-light); text-decoration: none; transition: color 0.3s;">
+                            <i class="bi bi-check-circle" style="font-size: 0.9rem;"></i> SEO & Digital Marketing
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="services.php#ecommerce" style="color: var(--text-light); text-decoration: none; transition: color 0.3s;">
+                            <i class="bi bi-check-circle" style="font-size: 0.9rem;"></i> Toko Online
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="services.php#design" style="color: var(--text-light); text-decoration: none; transition: color 0.3s;">
+                            <i class="bi bi-check-circle" style="font-size: 0.9rem;"></i> Design Logo
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="services.php#chatbot" style="color: var(--text-light); text-decoration: none; transition: color 0.3s;">
+                            <i class="bi bi-check-circle" style="font-size: 0.9rem;"></i> Robot Chat AI
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="services.php#custom" style="color: var(--text-light); text-decoration: none; transition: color 0.3s;">
+                            <i class="bi bi-check-circle" style="font-size: 0.9rem;"></i> Custom Development
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Account & Legal -->
+            <div class="col-lg-3 col-md-4">
+                <h5 style="color: var(--gold); font-weight: 700; margin-bottom: 1.5rem;">Akun</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <a href="auth/login.php" style="color: var(--text-light); text-decoration: none; transition: color 0.3s;">
+                            <i class="bi bi-box-arrow-in-right" style="font-size: 0.9rem;"></i> Login
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="auth/register.php" style="color: var(--text-light); text-decoration: none; transition: color 0.3s;">
+                            <i class="bi bi-person-plus" style="font-size: 0.9rem;"></i> Daftar Akun
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="client/index.php" style="color: var(--text-light); text-decoration: none; transition: color 0.3s;">
+                            <i class="bi bi-speedometer2" style="font-size: 0.9rem;"></i> Dashboard
+                        </a>
+                    </li>
+                </ul>
+                
+                <h6 style="color: var(--gold); margin-top: 2rem; margin-bottom: 1rem; font-weight: 600;">Legal</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <a href="privacy.php" style="color: var(--text-light); text-decoration: none; font-size: 0.9rem;">
+                            <i class="bi bi-shield" style="font-size: 0.8rem;"></i> Privacy Policy
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="terms.php" style="color: var(--text-light); text-decoration: none; font-size: 0.9rem;">
+                            <i class="bi bi-file-text" style="font-size: 0.8rem;"></i> Terms of Service
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <hr style="border-color: rgba(255,180,0,0.2); margin: 2rem 0;">
+        
+        <!-- Copyright -->
+        <div class="row align-items-center">
+            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                <p style="color: var(--text-light); margin: 0; font-size: 0.95rem;">
+                    &copy; <?= date('Y') ?> <strong style="color: var(--gold);">SITUNEO DIGITAL</strong>. All Rights Reserved.
+                </p>
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+                <p style="color: var(--text-light); margin: 0; font-size: 0.95rem;">
+                    Made with <i class="bi bi-heart-fill" style="color: #FF0000;"></i> in Jakarta, Indonesia
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+    footer a:hover {
+        color: var(--gold) !important;
+        padding-left: 5px;
+    }
+    
+    .social-btn:hover {
+        background: var(--gradient-gold) !important;
+        transform: translateY(-3px);
+        color: var(--dark-blue) !important;
+    }
+</style>
+
+<style>
+    footer a:hover {
+        color: var(--gold) !important;
+    }
+    
+    .social-btn:hover {
+        background: var(--gradient-gold) !important;
+        transform: translateY(-3px);
+        color: var(--dark-blue) !important;
+    }
+</style>
+
+<!-- Back to Top Button -->
+<button id="backToTop">
+    <i class="bi bi-arrow-up" style="font-size: 1.5rem;"></i>
+</button>
+
+<!-- Floating WhatsApp Button -->
+<a href="https://wa.me/6283173868915?text=Halo%20Situneo,%20saya%20mau%20bikin%20website" 
+   class="floating-wa" 
+   target="_blank">
+    <i class="bi bi-whatsapp"></i>
+</a>
+
+<!-- Order Notification (LEFT BOTTOM) -->
+<div id="orderNotification" class="order-notification">
+    <div style="display: flex; align-items: center; gap: 15px;">
+        <div style="width: 50px; height: 50px; border-radius: 50%; overflow: hidden; border: 2px solid var(--gold); flex-shrink: 0;">
+            <img id="notifAvatar" src="" alt="Customer" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <div style="flex: 1; min-width: 0;">
+            <h6 style="color: var(--gold); margin: 0; font-weight: 700; font-size: 0.95rem;" id="notifName">Budi Santoso</h6>
+            <p style="color: var(--text-light); margin: 0; font-size: 0.85rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" id="notifOrder">Baru pesan Website...</p>
+            <small style="color: rgba(255,255,255,0.6); font-size: 0.75rem;" id="notifTime">2 menit yang lalu</small>
+        </div>
+        <button onclick="closeNotification()" style="background: transparent; border: none; color: var(--text-light); cursor: pointer; padding: 5px; flex-shrink: 0;">
+            <i class="bi bi-x-lg"></i>
+        </button>
+    </div>
+</div>
+
+<!-- Demo Modal (AUTO POPUP AFTER 10 SECONDS) -->
+<div class="modal fade" id="demoModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content" style="background: linear-gradient(135deg, #0F3057 0%, #1E5C99 100%); border: 3px solid var(--gold); border-radius: 20px; overflow: hidden;">
+            <div class="modal-header border-0" style="background: var(--gradient-gold); padding: 1.5rem;">
+                <h3 class="modal-title" style="color: var(--dark-blue); font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 1.8rem;">
+                    <i class="bi bi-gift-fill"></i> FREE DEMO 24 JAM!
+                </h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" style="filter: brightness(0);"></button>
+            </div>
+            <div class="modal-body p-4">
+                <div class="text-center mb-4">
+                    <div style="background: rgba(255,0,0,0.2); border: 2px dashed var(--gold); padding: 20px; border-radius: 15px; margin-bottom: 1.5rem;">
+                        <h4 style="color: var(--gold); font-weight: 800; margin-bottom: 1rem;">
+                            ðŸ”¥ PROMO SPESIAL! ðŸ”¥
+                        </h4>
+                        <p style="color: var(--white); font-size: 1.2rem; margin: 0;">
+                            Lihat hasil website kamu dalam <strong style="color: var(--gold);">24 JAM GRATIS!</strong><br>
+                            Bayar cuma kalau kamu puas aja!
+                        </p>
+                    </div>
+                    
+                    <div class="row g-3 mb-4">
+                        <div class="col-4">
+                            <div style="background: rgba(255,180,0,0.1); padding: 15px; border-radius: 15px; border: 1px solid var(--gold);">
+                                <i class="bi bi-clock-history" style="font-size: 2rem; color: var(--gold);"></i>
+                                <p style="color: var(--white); margin: 10px 0 0 0; font-weight: 700;">24 Jam</p>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div style="background: rgba(255,180,0,0.1); padding: 15px; border-radius: 15px; border: 1px solid var(--gold);">
+                                <i class="bi bi-currency-dollar" style="font-size: 2rem; color: var(--gold);"></i>
+                                <p style="color: var(--white); margin: 10px 0 0 0; font-weight: 700;">100% GRATIS</p>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div style="background: rgba(255,180,0,0.1); padding: 15px; border-radius: 15px; border: 1px solid var(--gold);">
+                                <i class="bi bi-shield-check" style="font-size: 2rem; color: var(--gold);"></i>
+                                <p style="color: var(--white); margin: 10px 0 0 0; font-weight: 700;">No Risk</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h5 style="color: var(--gold); font-weight: 700; margin-bottom: 1.5rem; text-align: center;">
+                    Pilih cara paling gampang buat mulai:
+                </h5>
+                
+                <div class="d-grid gap-3">
+                    <a href="auth/register.php" class="btn-gold btn-lg" style="font-size: 1.1rem;">
+                        <i class="bi bi-person-plus"></i> DAFTAR & REQUEST DEMO SEKARANG
+                    </a>
+                    
+                    <a href="calculator.php" class="btn btn-outline-warning btn-lg" 
+                       style="border-radius: 50px; padding: 15px; font-weight: 700; border-width: 2px;">
+                        <i class="bi bi-calculator"></i> HITUNG DULU BERAPA BIAYANYA
+                    </a>
+                    
+                    <a href="portfolio.php" class="btn btn-outline-warning btn-lg" 
+                       style="border-radius: 50px; padding: 15px; font-weight: 700; border-width: 2px;">
+                        <i class="bi bi-eye"></i> LIHAT DEMO WEBSITE DULU
+                    </a>
+                    
+                    <a href="https://wa.me/6283173868915?text=Halo, saya mau request FREE DEMO 24 Jam dong" 
+                       class="btn btn-success btn-lg" 
+                       style="border-radius: 50px; padding: 15px; font-weight: 700;" 
+                       target="_blank">
+                        <i class="bi bi-whatsapp"></i> CHAT LANGSUNG LEWAT WHATSAPP
+                    </a>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <p style="color: var(--text-light); font-size: 0.9rem; margin: 0;">
+                        <i class="bi bi-shield-check"></i> NIB Resmi | 
+                        <i class="bi bi-people-fill"></i> 500+ Customer Puas | 
+                        <i class="bi bi-star-fill"></i> Rating 4.9/5.0
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript Libraries -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+    // Initialize AOS
+    AOS.init({
+        duration: 1000,
+        once: true,
+        offset: 100
+    });
+    
+    // Loading Screen
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            document.getElementById('loadingScreen').classList.add('hidden');
+        }, 1500);
+    });
+    
+    // Auto Show Demo Modal after 10 seconds
+    setTimeout(function() {
+        var demoModal = new bootstrap.Modal(document.getElementById('demoModal'));
+        demoModal.show();
+    }, 10000); // 10 detik
+    
+    // Navbar Scroll Effect
+    window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar-premium');
+        const backToTop = document.getElementById('backToTop');
+        
+        if (window.scrollY > 100) {
+            navbar.classList.add('scrolled');
+            backToTop.style.display = 'block';
+        } else {
+            navbar.classList.remove('scrolled');
+            backToTop.style.display = 'none';
+        }
+    });
+    
+    // Back to Top
+    document.getElementById('backToTop').addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    // Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href !== '#' && href !== '#demoModal') {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    const offset = 100;
+                    const targetPosition = target.offsetTop - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    });
+    
+    // Counter Animation
+    function animateCounter() {
+        const counters = document.querySelectorAll('.counter');
+        counters.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-target'));
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+            
+            const updateCounter = () => {
+                current += step;
+                if (current < target) {
+                    counter.textContent = Math.floor(current);
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    counter.textContent = target;
+                }
+            };
+            
+            updateCounter();
+        });
+    }
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter();
+                observer.unobserve(entry.target);
+            }
+        });
+    });
+    
+    const aboutSection = document.querySelector('#about');
+    if (aboutSection) observer.observe(aboutSection);
+    
+    // Order Notification System (LEFT BOTTOM)
+    const orderNotifications = [
+        { name: 'Budi Santoso', order: 'Website Toko Online', time: '2 menit yang lalu' },
+        { name: 'Sarah Wijaya', order: 'Website Company Profile', time: '5 menit yang lalu' },
+        { name: 'Dr. Ahmad', order: 'Website Klinik', time: '8 menit yang lalu' },
+        { name: 'Rina Kusuma', order: 'Website Restoran', time: '12 menit yang lalu' },
+        { name: 'Hendro', order: 'Website Portfolio', time: '15 menit yang lalu' },
+        { name: 'Lisa Permata', order: 'Landing Page', time: '20 menit yang lalu' },
+        { name: 'Dedi Kurniawan', order: 'Toko Online', time: '25 menit yang lalu' },
+        { name: 'Maya Sari', order: 'Website Spa', time: '30 menit yang lalu' }
+    ];
+    
+    function showOrderNotification() {
+        const notification = document.getElementById('orderNotification');
+        const randomNotif = orderNotifications[Math.floor(Math.random() * orderNotifications.length)];
+        
+        // Update content
+        document.getElementById('notifName').textContent = randomNotif.name;
+        document.getElementById('notifOrder').textContent = 'Baru pesan ' + randomNotif.order;
+        document.getElementById('notifTime').textContent = randomNotif.time;
+        document.getElementById('notifAvatar').src = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(randomNotif.name) + '&background=FFB400&color=0F3057&size=100';
+        
+        // Show notification
+        notification.classList.add('show');
+        notification.classList.remove('hide');
+        
+        // Auto hide after 10 seconds
+        setTimeout(() => {
+            notification.classList.add('hide');
+            setTimeout(() => {
+                notification.classList.remove('show');
+                notification.classList.remove('hide');
+            }, 500);
+        }, 10000);
+    }
+    
+    function closeNotification() {
+        const notification = document.getElementById('orderNotification');
+        notification.classList.add('hide');
+        setTimeout(() => {
+            notification.classList.remove('show');
+            notification.classList.remove('hide');
+        }, 500);
+    }
+    
+    // Show first notification after 5 seconds, then every 30 seconds
+    setTimeout(showOrderNotification, 5000);
+    setInterval(showOrderNotification, 30000);
+    
+    // Network Background Animation
+    const canvas = document.createElement('canvas');
+    const networkBg = document.getElementById('networkBg');
+    networkBg.appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+    
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    const particles = [];
+    const particleCount = 80;
+    
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.vx = (Math.random() - 0.5) * 0.5;
+            this.vy = (Math.random() - 0.5) * 0.5;
+            this.radius = Math.random() * 2 + 1;
+        }
+        
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            
+            if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+            if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+        }
+        
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(255, 180, 0, 0.5)';
+            ctx.fill();
+        }
+    }
+    
+    for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+    }
+    
+    function connectParticles() {
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 150) {
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(255, 180, 0, ${0.2 * (1 - distance / 150)})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+    }
+    
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        particles.forEach(particle => {
+            particle.update();
+            particle.draw();
+        });
+        
+        connectParticles();
+        requestAnimationFrame(animate);
+    }
+    
+    animate();
+    
+    window.addEventListener('resize', function() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+</script>
+</body> </html>
+3.login kaya gini
+
+<!DOCTYPE html> <html lang="id"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Masuk - SITUNEO DIGITAL</title> <meta name="description" content="Masuk ke akun SITUNEO DIGITAL untuk mengakses layanan digital kami">
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="https://situneo.my.id/logo">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+<!-- CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+    :root {
+        --primary-blue: #1E5C99;
+        --dark-blue: #0F3057;
+        --gold: #FFB400;
+        --bright-gold: #FFD700;
+        --white: #ffffff;
+        --text-light: #e9ecef;
+        --gradient-primary: linear-gradient(135deg, #1E5C99 0%, #0F3057 100%);
+        --gradient-gold: linear-gradient(135deg, #FFD700 0%, #FFB400 100%);
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Inter', sans-serif;
+        background: var(--dark-blue);
+        color: var(--white);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+    
+    .auth-container {
+        background: rgba(15, 48, 87, 0.8);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 180, 0, 0.2);
+        overflow: hidden;
+        width: 100%;
+        max-width: 900px;
+    }
+    
+    .auth-row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .auth-left {
+        flex: 1;
+        min-width: 300px;
+        background: var(--gradient-primary);
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .auth-right {
+        flex: 1;
+        min-width: 300px;
+        padding: 40px;
+    }
+    
+    .logo {
+        margin-bottom: 30px;
+    }
+    
+    .logo img {
+        width: 120px;
+        height: 120px;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+    
+    .auth-title {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 2rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+        background: var(--gradient-gold);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-control {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        padding: 12px 15px;
+        color: var(--white);
+        transition: all 0.3s;
+    }
+    
+    .form-control:focus {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: var(--gold);
+        box-shadow: 0 0 0 0.25rem rgba(255, 180, 0, 0.25);
+        color: var(--white);
+    }
+    
+    .form-control::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+    
+    .btn-gold {
+        background: var(--gradient-gold);
+        color: var(--dark-blue);
+        border: none;
+        padding: 12px 30px;
+        font-weight: 700;
+        border-radius: 50px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: all 0.3s;
+        width: 100%;
+        box-shadow: 0 5px 15px rgba(255, 180, 0, 0.3);
+    }
+    
+    .btn-gold:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(255, 180, 0, 0.6);
+        color: var(--dark-blue);
+    }
+    
+    .auth-link {
+        color: var(--gold);
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s;
+    }
+    
+    .auth-link:hover {
+        color: var(--bright-gold);
+        text-decoration: underline;
+    }
+    
+    .alert {
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .alert-danger {
+        background: rgba(220, 53, 69, 0.2);
+        border: 1px solid rgba(220, 53, 69, 0.3);
+        color: #f8d7da;
+    }
+    
+    .alert-success {
+        background: rgba(25, 135, 84, 0.2);
+        border: 1px solid rgba(25, 135, 84, 0.3);
+        color: #d1e7dd;
+    }
+    
+    .invalid-feedback {
+        color: #ff6b6b;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+    }
+    
+    .form-check-input:checked {
+        background-color: var(--gold);
+        border-color: var(--gold);
+    }
+    
+    .social-login {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+    
+    .social-btn {
+        flex: 1;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--white);
+        text-align: center;
+        transition: all 0.3s;
+    }
+    
+    .social-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+    }
+    
+    @media (max-width: 768px) {
+        .auth-left, .auth-right {
+            padding: 30px 20px;
+        }
+        
+        .auth-title {
+            font-size: 1.5rem;
+        }
+    }
+</style>
+</head> <body> <div class="auth-container"> <div class="auth-row"> <div class="auth-left"> <div class="logo"> <img src="https://situneo.my.id/logo" alt="Situneo"> </div> <h2 class="auth-title">SITUNEO DIGITAL</h2> <p class="mb-4">Selamat datang kembali! Masuk ke akun Anda untuk mengakses layanan digital kami.</p> <div class="d-flex justify-content-center gap-3"> <a href="#" class="text-white fs-4"><i class="bi bi-facebook"></i></a> <a href="#" class="text-white fs-4"><i class="bi bi-instagram"></i></a> <a href="#" class="text-white fs-4"><i class="bi bi-twitter"></i></a> <a href="#" class="text-white fs-4"><i class="bi bi-linkedin"></i></a> </div> </div> <div class="auth-right"> <h3 class="mb-4">Masuk</h3>
+            <?php if (!empty($success)): ?>
+                <div class="alert alert-success">
+                    <i class="bi bi-check-circle-fill me-2"></i><?= $success ?>
+                </div>
+            <?php endif; ?>
+            
+            <?php if (!empty($errors['general'])): ?>
+                <div class="alert alert-danger">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i><?= $errors['general'] ?>
+                </div>
+            <?php endif; ?>
+            
+            <form method="post" action="" id="loginForm">
+                <div class="form-group">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan email" value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>">
+                    <?php if (!empty($errors['email'])): ?>
+                        <div class="invalid-feedback"><?= $errors['email'] ?></div>
+                    <?php endif; ?>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password">
+                        <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                    </div>
+                    <?php if (!empty($errors['password'])): ?>
+                        <div class="invalid-feedback"><?= $errors['password'] ?></div>
+                    <?php endif; ?>
+                </div>
+                
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="remember" name="remember">
+                        <label class="form-check-label" for="remember">
+                            Ingat saya
+                        </label>
+                    </div>
+                    <a href="forgot_password.php" class="auth-link">Lupa password?</a>
+                </div>
+                
+                <button type="submit" class="btn btn-gold">Masuk</button>
+            </form>
+            
+            <div class="text-center mt-4">
+                <p>Belum punya akun? <a href="register.php" class="auth-link">Daftar</a></p>
+            </div>
+            
+            <div class="divider my-4 text-center">
+                <span class="px-3">atau masuk dengan</span>
+            </div>
+            
+            <div class="social-login">
+                <a href="#" class="social-btn">
+                    <i class="bi bi-google"></i> Google
+                </a>
+                <a href="#" class="social-btn">
+                    <i class="bi bi-facebook"></i> Facebook
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Toggle password visibility
+    document.getElementById('togglePassword').addEventListener('click', function() {
+        const passwordInput = document.getElementById('password');
+        const icon = this.querySelector('i');
+        
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            icon.classList.remove('bi-eye');
+            icon.classList.add('bi-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            icon.classList.remove('bi-eye-slash');
+            icon.classList.add('bi-eye');
+        }
+    });
+    
+    // Form validation
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        
+        if (!email) {
+            e.preventDefault();
+            document.getElementById('email').focus();
+            return false;
+        }
+        
+        if (!password) {
+            e.preventDefault();
+            document.getElementById('password').focus();
+            return false;
+        }
+    });
+</script>
+</body> </html> 4.<!DOCTYPE html> <html lang="id"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Daftar - SITUNEO DIGITAL</title> <meta name="description" content="Daftar akun baru SITUNEO DIGITAL untuk mengakses layanan digital kami">
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="https://situneo.my.id/logo">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+<!-- CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+    :root {
+        --primary-blue: #1E5C99;
+        --dark-blue: #0F3057;
+        --gold: #FFB400;
+        --bright-gold: #FFD700;
+        --white: #ffffff;
+        --text-light: #e9ecef;
+        --gradient-primary: linear-gradient(135deg, #1E5C99 0%, #0F3057 100%);
+        --gradient-gold: linear-gradient(135deg, #FFD700 0%, #FFB400 100%);
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Inter', sans-serif;
+        background: var(--dark-blue);
+        color: var(--white);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+    
+    .auth-container {
+        background: rgba(15, 48, 87, 0.8);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 180, 0, 0.2);
+        overflow: hidden;
+        width: 100%;
+        max-width: 900px;
+    }
+    
+    .auth-row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .auth-left {
+        flex: 1;
+        min-width: 300px;
+        background: var(--gradient-primary);
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .auth-right {
+        flex: 1;
+        min-width: 300px;
+        padding: 40px;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    
+    .logo {
+        margin-bottom: 30px;
+    }
+    
+    .logo img {
+        width: 120px;
+        height: 120px;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+    
+    .auth-title {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 2rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+        background: var(--gradient-gold);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-control {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        padding: 12px 15px;
+        color: var(--white);
+        transition: all 0.3s;
+    }
+    
+    .form-control:focus {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: var(--gold);
+        box-shadow: 0 0 0 0.25rem rgba(255, 180, 0, 0.25);
+        color: var(--white);
+    }
+    
+    .form-control::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+    
+    .btn-gold {
+        background: var(--gradient-gold);
+        color: var(--dark-blue);
+        border: none;
+        padding: 12px 30px;
+        font-weight: 700;
+        border-radius: 50px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: all 0.3s;
+        width: 100%;
+        box-shadow: 0 5px 15px rgba(255, 180, 0, 0.3);
+    }
+    
+    .btn-gold:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(255, 180, 0, 0.6);
+        color: var(--dark-blue);
+    }
+    
+    .auth-link {
+        color: var(--gold);
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s;
+    }
+    
+    .auth-link:hover {
+        color: var(--bright-gold);
+        text-decoration: underline;
+    }
+    
+    .alert {
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .alert-danger {
+        background: rgba(220, 53, 69, 0.2);
+        border: 1px solid rgba(220, 53, 69, 0.3);
+        color: #f8d7da;
+    }
+    
+    .alert-success {
+        background: rgba(25, 135, 84, 0.2);
+        border: 1px solid rgba(25, 135, 84, 0.3);
+        color: #d1e7dd;
+    }
+    
+    .invalid-feedback {
+        color: #ff6b6b;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+        display: block;
+    }
+    
+    .password-strength {
+        height: 5px;
+        border-radius: 5px;
+        margin-top: 5px;
+        transition: all 0.3s;
+    }
+    
+    .strength-weak {
+        background: #dc3545;
+        width: 33%;
+    }
+    
+    .strength-medium {
+        background: #ffc107;
+        width: 66%;
+    }
+    
+    .strength-strong {
+        background: #28a745;
+        width: 100%;
+    }
+    
+    .input-group .btn-outline-secondary {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-left: none;
+        color: var(--white);
+        border-radius: 0 10px 10px 0;
+    }
+    
+    .input-group .btn-outline-secondary:hover {
+        background: rgba(255, 255, 255, 0.2);
+        color: var(--gold);
+    }
+    
+    .input-group .form-control {
+        border-right: none;
+        border-radius: 10px 0 0 10px;
+    }
+    
+    @media (max-width: 768px) {
+        .auth-left, .auth-right {
+            padding: 30px 20px;
+        }
+        
+        .auth-title {
+            font-size: 1.5rem;
+        }
+    }
+</style>
+</head> <body> <div class="auth-container"> <div class="auth-row"> <div class="auth-left"> <div class="logo"> <img src="https://situneo.my.id/logo" alt="Situneo"> </div> <h2 class="auth-title">SITUNEO DIGITAL</h2> <p class="mb-4">Bergabunglah dengan kami! Daftar sekarang untuk mendapatkan akses ke layanan digital terbaik.</p> <div class="d-flex justify-content-center gap-3"> <a href="#" class="text-white fs-4"><i class="bi bi-facebook"></i></a> <a href="#" class="text-white fs-4"><i class="bi bi-instagram"></i></a> <a href="#" class="text-white fs-4"><i class="bi bi-twitter"></i></a> <a href="#" class="text-white fs-4"><i class="bi bi-linkedin"></i></a> </div> </div> <div class="auth-right"> <h3 class="mb-4">Daftar Akun Baru</h3>
+            <?php if (!empty($success)): ?>
+                <div class="alert alert-success">
+                    <i class="bi bi-check-circle-fill me-2"></i><?= $success ?>
+                </div>
+                <div class="text-center mt-3">
+                    <a href="login.php" class="btn btn-gold">Masuk Sekarang</a>
+                </div>
+            <?php else: ?>
+                <?php if (!empty($errors['general'])): ?>
+                    <div class="alert alert-danger">
+                        <i class="bi bi-exclamation-triangle-fill me-2"></i><?= $errors['general'] ?>
+                    </div>
+                <?php endif; ?>
+                
+                <form method="post" action="" id="registerForm">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Nama Lengkap</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Masukkan nama lengkap" value="<?= isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '' ?>">
+                        <?php if (!empty($errors['name'])): ?>
+                            <div class="invalid-feedback"><?= $errors['name'] ?></div>
+                        <?php endif; ?>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan email" value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>">
+                        <?php if (!empty($errors['email'])): ?>
+                            <div class="invalid-feedback"><?= $errors['email'] ?></div>
+                        <?php endif; ?>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone" class="form-label">Nomor WhatsApp</label>
+                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="628xxxxxxxxx" value="<?= isset($_POST['phone']) ? htmlspecialchars($_POST['phone']) : '' ?>">
+                        <?php if (!empty($errors['phone'])): ?>
+                            <div class="invalid-feedback"><?= $errors['phone'] ?></div>
+                        <?php endif; ?>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password" class="form-label">Password</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Minimal 8 karakter">
+                            <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                        </div>
+                        <div class="password-strength" id="passwordStrength"></div>
+                        <?php if (!empty($errors['password'])): ?>
+                            <div class="invalid-feedback"><?= $errors['password'] ?></div>
+                        <?php endif; ?>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirm_password" class="form-label">Konfirmasi Password</label>
+                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Masukkan ulang password">
+                        <?php if (!empty($errors['confirm_password'])): ?>
+                            <div class="invalid-feedback"><?= $errors['confirm_password'] ?></div>
+                        <?php endif; ?>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-gold">Daftar</button>
+                </form>
+                
+                <div class="text-center mt-4">
+                    <p>Sudah punya akun? <a href="login.php" class="auth-link">Masuk</a></p>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Toggle password visibility
+    document.getElementById('togglePassword').addEventListener('click', function() {
+        const passwordInput = document.getElementById('password');
+        const icon = this.querySelector('i');
+        
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            icon.classList.remove('bi-eye');
+            icon.classList.add('bi-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            icon.classList.remove('bi-eye-slash');
+            icon.classList.add('bi-eye');
+        }
+    });
+    
+    // Password strength checker
+    document.getElementById('password').addEventListener('input', function() {
+        const password = this.value;
+        const strengthElement = document.getElementById('passwordStrength');
+        
+        let strength = 0;
+        
+        // Check password strength
+        if (password.length >= 8) strength++;
+        if (password.match(/[a-z]+/)) strength++;
+        if (password.match(/[A-Z]+/)) strength++;
+        if (password.match(/[0-9]+/)) strength++;
+        if (password.match(/[$@#&!]+/)) strength++;
+        
+        // Update strength indicator
+        strengthElement.className = 'password-strength';
+        
+        if (password.length > 0) {
+            if (strength <= 2) {
+                strengthElement.classList.add('strength-weak');
+            } else if (strength <= 4) {
+                strengthElement.classList.add('strength-medium');
+            } else {
+                strengthElement.classList.add('strength-strong');
+            }
+        }
+    });
+    
+    // Form validation
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirm_password').value;
+        
+        if (password !== confirmPassword) {
+            e.preventDefault();
+            alert('Password dan konfirmasi password tidak cocok!');
+            return false;
+        }
+        
+        if (password.length < 8) {
+            e.preventDefault();
+            alert('Password minimal 8 karakter!');
+            return false;
+        }
+    });
+</script>
+</body> </html> 5.untuk client ajuin demo dan Partner wajib register , dan form register ada 2 pilihan , sebagai client atau partner di bedain ya , dan isi form nya juga beda , klo partner seperti melamar pekerjaan , tetapi jangan di persulit 6. .yang komisi pakai yang maksimal 55%klo ga salah ada 4 tier , kamu cek materi nya udah saya kirim disini 7.inget situneo ada 3 role ya , sesuai materi yang saya kasih
+jika ada pertanyaan kamu boleh tanya , intinya saya mau super lengkap , database sql lebih dari 17 juga gpp , karna materi nya banyak kan , bisa 300 file lebih , kamu pecah2 isi file nya , biar tidak terlalu panjuang , dan saya jadi mudah untuk mengedit nya
+
+pokok nya kamu baca lagi aja semua materi nya ya
